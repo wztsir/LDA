@@ -12,7 +12,7 @@ pip install -r requirements.txt(修改为对应路径)
 
 ## html阅读
 
-![html](.\data\imgs\html.png)
+![html](data/imgs/html.png)
 
 在 pyLDAvis 主题可视化中，"Overall term frequency"（整体词频）和"Estimated term frequency within the selected topic"（在选定主题中的估计词频）是两个用于衡量主题关键词的重要性的指标。
 
