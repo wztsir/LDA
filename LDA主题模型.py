@@ -81,15 +81,15 @@ def calculate_coherence_score(dictionary, corpus, texts, limit, start=2, step=1)
 def main():
     # 待做 LDA 的文本 csv 文件，可以是本地文件，也可以是远程文件，一定要保证它是存在的！！！！
     # source_csv_path = 'comment.csv'
-    source_excel_path = 'data/2022 lda.xlsx'
+    source_excel_path = 'data/2020 lda.xlsx'
     # 文本 csv 文件里面文本所处的列名,注意这里一定要填对，要不然会报错的！！！
     document_column_name = 'content'
     # 输出主题词的文件路径
-    top_words_csv_path = 'res/2022/top-topic-words.csv'
+    top_words_csv_path = 'res/2020/top-topic-words.csv'
     # 输出各文档所属主题的文件路径
-    predict_topic_csv_path = 'res/2022/document-distribution.csv'
+    predict_topic_csv_path = 'res/2020/document-distribution.csv'
     # 可视化 html 文件路径
-    html_path = 'res/2022/document-lda-visualization.html'
+    html_path = 'res/2020/document-lda-visualization.html'
     # 选定的主题数
     # n_topics = 3
     # 要输出的每个主题的前 n_top_words 个主题词数
@@ -105,7 +105,10 @@ def main():
         }))
     # 设置停用词集合
     stop_words_set = {'你', '我', 'nan', '的', '什么', '怎么', '微博', '转发', '可以', '就是', '自己', '我们', '他们', '你们', '这个', '应该',
-                      '现在', '核子', '真的', '一边', '如何', '不到', '决定', '意思', '看待', '试试', '各位', '查看'}
+                      '现在', '核子', '真的', '一边', '如何', '不到', '决定', '意思', '看待', '试试', '各位', '查看', '一个', '没有', '因为', '但是',
+                      '如果', '已经', '这样', '这么', '最后', '时候', '别人', '知道', '还是', '觉得', '不是', '很多', '开始', '一样', '一天', '还有',
+                      '继续', '终于', '每天', '今天', '不能', '四个', '只有', '一些', '那么', '为什么', '所以', '一直', '其实', '为了', '每个', '然后',
+                      '以后', '有点', '不会', '可能', '需要', '看到', '一起', '一定', '不要', '还要'}
     # 去重、去缺失、分词
     df['cut'] = (
         df['text']
@@ -136,6 +139,7 @@ def main():
     best_model_index = np.argmax(coherence_values)
     best_model = model_list[best_model_index]
     best_num_topics = start + best_model_index * step
+
 
     # 输出最佳主题数
     print(f"Best Number of Topics: {best_num_topics}")
